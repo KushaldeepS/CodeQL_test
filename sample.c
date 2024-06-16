@@ -19,6 +19,12 @@ int main(int argc, char** argv) {
       fprintf(stderr, "The file %s does not exist or cannot be accessed.\n", filename);
       return -1;
     }
+    //close the file gracefully
+    if (fclose(fp) != 0) {
+      fprintf(stderr, "Failed to close the file %s.\n", filename);
+      return -1;
+    }
+    //perform the system command witht eh valid system info
     char cmd[BUFSIZE] = "wc -c < ";
     strncat(cmd, filename, BUFSIZ);
     system(cmd);
