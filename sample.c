@@ -11,7 +11,16 @@ int main(int argc, char** argv) {
       fprintf(stderr, "Please provide the address of a file as an input.\n");
       return -1;
     }
+    //get the value of the argv[1] - the second argument in the command line arguments
+    char* filename = argv[1];
+    //check to see if the file exists and valid and can be accessed before sending to the system command
+    FILE * fp = fopen(filename, "r");
+    if (fp == NULL) {
+      fprintf(stderr, "The file %s does not exist or cannot be accessed.\n", filename);
+      return -1;
+    }
     char cmd[BUFSIZE] = "wc -c < ";
-    strcat(cmd, argv[1]);
+    strncat(cmd, filename, BUFSIZ);
     system(cmd);
+    return 0;
 }
