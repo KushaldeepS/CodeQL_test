@@ -24,9 +24,9 @@ int main(int argc, char** argv) {
       fprintf(stderr, "Failed to close the file %s.\n", filename);
       return -1;
     }
-    //perform the system command witht eh valid system info
+    //perform the system command with eh valid system info
     char cmd[BUFSIZE] = "wc -c < ";
-    strncat(cmd, filename, BUFSIZ);
+    strncat(cmd, filename, BUFSIZE);
     system(cmd);
     return 0;
 }
